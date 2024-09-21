@@ -1,0 +1,21 @@
+version: 0.0
+os: linux
+files:
+  - source: /  # Source folder (where CodeDeploy pulls files from)
+    destination: /var/www/flaskapp  # Destination folder on the instance/server
+
+hooks:
+  BeforeInstall:
+    - location: scripts/before_install.sh
+      timeout: 300
+      runas: root
+
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 300
+      runas: root
+
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 300
+      runas: root

@@ -1,0 +1,30 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing Python dependencies"
+      - apt-get update -y
+      - apt-get install -y python3-pip
+      - pip3 install --upgrade pip
+      - pip3 install flask flask-cors
+
+  pre_build:
+    commands:
+      - echo "Starting pre-build phase"
+      - pip3 install -r requirements.txt || true  # Optional, if you have a requirements.txt file
+
+  build:
+    commands:
+      - echo "Building the Flask application"
+      - python3 main.py &  # Running the Flask app in the background
+
+  post_build:
+    commands:
+      - echo "Build completed successfully"
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes
+
