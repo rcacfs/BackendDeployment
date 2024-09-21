@@ -27,5 +27,9 @@ phases:
 artifacts:
   files:
     - '**/*'
-  discard-paths: yes
+    - appspec.yml
+    - scripts/**/*
+    - main.py
+    - requirements.txt
+
 
